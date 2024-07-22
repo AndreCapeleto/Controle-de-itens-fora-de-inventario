@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Controle de Estoque</h1>
+        <div class="menu">
+            <button onclick="showContent('itemForm')">Cadastro de Itens</button>
+            <button onclick="showContent('entryForm')">Dar Entrada</button>
+            <button onclick="showContent('exitForm')">Dar Saída</button>
+            <button onclick="showContent('report')">Relatório</button>
+        </div>
+        
+        <div id="itemForm" class="content">
+            <h2>Cadastro de Itens</h2>
+            <form id="addItemForm">
+                <input type="text" id="partNumber" placeholder="Partnumber" required>
+                <input type="text" id="itemDescription" placeholder="Descrição do Item" required>
+                <button type="submit">Adicionar Item</button>
+            </form>
+        </div>
+
+        <div id="entryForm" class="content">
+            <h2>Dar Entrada</h2>
+            <form id="addEntryForm">
+                <select id="itemSelect" required>
+                    <option value="" disabled selected>Selecione um item</option>
+                </select>
+                <input type="text" id="entryLocation" placeholder="Locação" required>
+                <input type="number" id="entryQuantity" placeholder="Quantidade" required min="1">
+                <button type="submit">Adicionar Entrada</button>
+            </form>
+        </div>
+
+        <div id="exitForm" class="content">
+            <h2>Dar Saída</h2>
+            <form id="removeEntryForm">
+                <input type="number" id="removeId" placeholder="ID da Entrada" required>
+                <button type="submit">Remover Entrada</button>
+            </form>
+        </div>
+
+        <div id="report" class="content">
+            <h2>Relatório</h2>
+            <table id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Partnumber</th>
+                        <th>Descrição</th>
+                        <th>Locações</th>
+                        <th>Quantidade Total</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Itens serão adicionados aqui -->
+                </tbody>
+            </table>
+            <button onclick="exportToExcel()">Exportar para Excel</button>
+        </div>
+    </div>
+
+    <!-- Modal de Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="popupMessage"></span>
+        </div>
+    </div>
+
+    <!-- Incluindo a biblioteca SheetJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
